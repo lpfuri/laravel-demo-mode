@@ -8,7 +8,9 @@ Now this package allows your app to do a few things really easy:
 
 - Blocks one user in the database so it acts as demo user and can't be updated or deleted.
 - Tells the app that demo mode is on so it can show demo user credentials.
-- Make a backup of the demo database that will be restored in some period of time.
+- Make a backup of the demo database that will be restored in some regular period of time.
+
+Right now this package only works with eloquent extended users and mysql databases.
 
 ## Installation
 
@@ -20,9 +22,16 @@ Run the Composer require command from the Terminal:
 
 ## Usage
 
-After installing the package you can have everything done in two steps using the terminal:
+After installing the package you can have everything done in three steps:
 
 ### Set database backup
+
+Use the package facade (Lpfuri\LaravelDemoMode\Facades\DemoMode) and use this to check app state and show demo user credentials:
+```php
+DemoMode::isDemoModeOn();
+```
+
+### Backup database for restoring
 
 Type in terminal:
 ```buildconfig
@@ -35,6 +44,33 @@ Type in terminal:
 ```buildconfig
 php artisan demo-mode:on
 ```
+
+By default user with id value 1 will be the demo user and database will be restored every day (Schedule must be running). You can change this values in the config file.
+
+More stuff you can do:
+
+### Set demo mode off
+
+Type in terminal:
+```buildconfig
+php artisan demo-mode:off
+```
+
+### Manually restore the database
+
+Type in terminal:
+```buildconfig
+php artisan demo-mode:restore
+```
+
+### Get demo user
+
+Type in terminal:
+```php
+DemoMode::user();
+```
+
+
 
 
 
