@@ -46,6 +46,7 @@ php artisan demo-mode:on
 ```
 
 By default user with id value 1 will be the demo user and database will be restored every day (Schedule must be running). You can change this values in the config file.
+Keep in mind that whenever a user tries to update or delete the demo user an error will be thrown.
 
 More stuff you can do:
 
@@ -65,7 +66,6 @@ php artisan demo-mode:restore
 
 ### Get demo user
 
-Type in terminal:
 ```php
 DemoMode::user();
 ```
