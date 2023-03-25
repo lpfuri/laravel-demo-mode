@@ -20,6 +20,6 @@ return [
 
   'backup_file_name'    => 'demo.sql',
 
-  'restoring_period'    => 'everyMinute'
+  'restoring_period'    => 'daily'
 
 ];

@@ -18,7 +18,7 @@ Install the package through [Composer](http://getcomposer.org/).
 
 Run the Composer require command from the Terminal:
 
-	composer require lpfuri/laravel-demo-app
+	composer require lpfuri/laravel-demo-mode
 
 ## Usage
 
