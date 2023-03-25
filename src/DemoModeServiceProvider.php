@@ -52,7 +52,7 @@ class DemoModeServiceProvider extends ServiceProvider
 
             if($user->getKey() == config('demo-mode.demo_user_id'))
                 if(DemoMode::isDemoModeOn())
-                    throw new \Exception("This user cannot be changed", config('demo-mode.error_code'));
+                    abort(config('demo-mode.error_code'), "This user cannot be changed");
                 
         });
 
@@ -61,7 +61,7 @@ class DemoModeServiceProvider extends ServiceProvider
 
             if($user->getKey() == config('demo-mode.demo_user_id'))
                 if(DemoMode::isDemoModeOn())
-                    throw new \Exception("This user cannot be deleted", config('demo-mode.error_code'));
+                    abort(config('demo-mode.error_code'), "This user cannot be deleted");
                 
         });
     }
