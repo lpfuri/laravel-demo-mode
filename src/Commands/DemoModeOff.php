@@ -2,6 +2,7 @@
 
 namespace Lpfuri\LaravelDemoMode\Commands;
 
+use Lpfuri\LaravelDemoMode\Helper;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 
@@ -24,11 +25,11 @@ class DemoModeOff extends Command
     /**
      * Execute the console command.
      *
-     * @return int
+     * @return void
      */
     public function handle()
     {
-        if(!Storage::exists(config('demo-mode.folder').'/demo-mode')){
+        if(!Storage::exists(Helper::folder().'/demo-mode')){
 
             $this->warn('Application is out of demo mode already.');
 
@@ -36,7 +37,7 @@ class DemoModeOff extends Command
 
         }
 
-        Storage::delete(config('demo-mode.folder').'/demo-mode');
+        Storage::delete(Helper::folder().'/demo-mode');
 
         $this->info('Application is out of demo mode.');
     }

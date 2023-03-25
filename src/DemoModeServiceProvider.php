@@ -24,15 +24,13 @@ class DemoModeServiceProvider extends ServiceProvider
 
         $this->listenUserEvents();
 
-
-
         if(DemoMode::isDemoModeOn()){
 
             $this->app->booted(function () {
 
                 $schedule = $this->app->make(Schedule::class);
 
-                $schedule->command(Commands\RestoreDb::class)->{config('demo-mode.restoring_period')}();
+                $schedule->command(Commands\RestoreDb::class)->{Helper::restoringPeriod()}();
 
             });
 
@@ -48,20 +46,19 @@ class DemoModeServiceProvider extends ServiceProvider
 
     protected function listenUserEvents()
     {
-        Event::listen(config('demo-mode.user_updating_event'), function ($user) {
+        Event::listen(Helper::userUpdatingEvent(), function ($user) {
 
-            if($user->getKey() == config('demo-mode.demo_user_id'))
+            if($user->getKey() == Helper::userId())
                 if(DemoMode::isDemoModeOn())
-                    abort(config('demo-mode.error_code'), "This user cannot be changed");
+                    abort(Helper::errorCode(), "This user cannot be changed");
                 
         });
 
+        Event::listen(Helper::userDeletingEvent(), function ($user) {
 
-        Event::listen(config('demo-mode.user_deleting_event'), function ($user) {
-
-            if($user->getKey() == config('demo-mode.demo_user_id'))
+            if($user->getKey() == Helper::userId())
                 if(DemoMode::isDemoModeOn())
-                    abort(config('demo-mode.error_code'), "This user cannot be deleted");
+                    abort(Helper::errorCode(), "This user cannot be deleted");
                 
         });
     }

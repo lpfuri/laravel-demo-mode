@@ -32,4 +32,29 @@ class Helper
 			? storage_path('app').'/'.$path
 			: $path;
 	}
+
+	public static function restoringPeriod()
+	{
+		return config('demo-mode.restoring_period');
+	}
+
+	public static function userId()
+	{
+		return config('demo-mode.demo_user_id');
+	}
+
+	public static function userUpdatingEvent()
+	{
+		return config('demo-mode.user_updating_event');
+	}
+
+	public static function userDeletingEvent()
+	{
+		return config('demo-mode.user_deleting_event');
+	}
+
+	public static function errorCode()
+	{
+		return config('demo-mode.error_code');
+	}
 }
