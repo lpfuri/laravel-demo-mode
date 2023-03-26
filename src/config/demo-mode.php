@@ -6,10 +6,6 @@ return [
 
   'user_model'           => 'App\Models\User',
 
-  'login_field'          => 'email',
-
-  'password_field'       => 'password',
-
   'demo_user_id'         => 1,
 
   'user_updating_event'  => 'eloquent.updating: App\Models\User',
